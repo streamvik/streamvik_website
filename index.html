@@ -1,83 +1,470 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Streamvik Entertainment Limited - Support & Privacy</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        h1, h2, h3 { color: #111; }
-        .header {
-            border-bottom: 2px solid #eaeaea;
-            padding-bottom: 20px;
-            margin-bottom: 40px;
-        }
-        .support-box {
-            background: #f4f6f8;
-            padding: 25px;
-            border-radius: 8px;
-            margin-bottom: 40px;
-            border-left: 4px solid #007aff;
-        }
-        .privacy-policy {
-            font-size: 0.95em;
-            color: #444;
-        }
-        .date {
-            font-style: italic;
-            color: #666;
-            margin-bottom: 30px;
-        }
-        a { color: #007aff; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Streamvik Entertainment Limited</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(0, 122, 255, 0.25), transparent 35%),
+        radial-gradient(circle at top right, rgba(120, 80, 255, 0.25), transparent 35%),
+        linear-gradient(135deg, #0b0f1a, #111827);
+      color: #ffffff;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 20px 60px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 30px 0 70px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(12px);
+      margin-bottom: 24px;
+      font-size: 0.92rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 7vw, 5.2rem);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+      background: linear-gradient(135deg, #ffffff, #c7d2fe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto;
+      color: #cbd5e1;
+      font-size: 1.15rem;
+    }
+
+    .section {
+      margin-top: 35px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: #94a3b8;
+    }
+
+    .tabs-card {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 28px;
+      padding: 18px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .tab-button {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 18px;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.07);
+      font-size: 1rem;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .tab-button:hover {
+      background: rgba(255, 255, 255, 0.11);
+      color: #ffffff;
+    }
+
+    .tab-button.active {
+      background: linear-gradient(135deg, #007aff, #8b5cf6);
+      color: #ffffff;
+      box-shadow: 0 12px 35px rgba(0, 122, 255, 0.28);
+    }
+
+    .tab-content {
+      display: none;
+      min-height: 260px;
+      border-radius: 22px;
+      padding: 42px 24px;
+      background: rgba(0, 0, 0, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      text-align: center;
+    }
+
+    .tab-content.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .app-holder {
+      width: 118px;
+      height: 118px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+      overflow: hidden;
+    }
+
+    .app-holder img {
+      width: 86px;
+      height: 86px;
+      object-fit: contain;
+      border-radius: 20px;
+    }
+
+    .app-name {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-top: 4px;
+    }
+
+    .tools-empty h3 {
+      font-size: 1.75rem;
+      margin-bottom: 10px;
+    }
+
+    .tools-empty p {
+      color: #94a3b8;
+      max-width: 520px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .info-box {
+      background: rgba(255, 255, 255, 0.065);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 22px;
+      padding: 24px;
+    }
+
+    .info-box h3 {
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+    }
+
+    .info-box p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    .support {
+      margin-top: 45px;
+      padding: 30px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(0, 122, 255, 0.17), rgba(139, 92, 246, 0.17));
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      text-align: center;
+    }
+
+    .support h2 {
+      margin-bottom: 10px;
+    }
+
+    .support p {
+      color: #cbd5e1;
+      margin-bottom: 12px;
+    }
+
+    .email-link {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #111827;
+      font-weight: 800;
+      transition: 0.2s ease;
+    }
+
+    .email-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(255, 255, 255, 0.12);
+    }
+
+    .privacy {
+      margin-top: 45px;
+      padding: 30px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .privacy h2 {
+      margin-bottom: 8px;
+    }
+
+    .date {
+      color: #94a3b8;
+      font-style: italic;
+      margin-bottom: 22px;
+    }
+
+    .privacy h3 {
+      margin-top: 24px;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .privacy p {
+      color: #cbd5e1;
+      margin-bottom: 12px;
+    }
+
+    .privacy a {
+      color: #93c5fd;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 45px;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 750px) {
+      .page {
+        padding-top: 40px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 10px;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <div class="page">
+    <section class="hero">
+      <div class="badge">Games • Tools • Creative Apps</div>
+      <h1>Streamvik Entertainment Limited</h1>
+      <p>
+        We create simple, fun, and useful digital experiences — from games to everyday tools.
+        Our goal is to build apps that feel clean, modern, and enjoyable to use.
+      </p>
+    </section>
 
-    <div class="header">
-        <h1>STREAMVIK ENTERTAINMENT LIMITED</h1>
-        <p>Developer of <strong>HCMAI (Hindustani Classical Music AI)</strong></p>
-    </div>
+    <section id="apps" class="section">
+      <div class="section-title">
+        <h2>Our Apps</h2>
+        <p>Explore our games and tools.</p>
+      </div>
 
-    <div class="support-box">
-        <h2>App Support</h2>
-        <p>If you need assistance with HCMAI (Hindustani Classical Music AI), have questions about your account, or want to report a bug, please contact us directly:</p>
-        <p><strong>Email:</strong> <a href="mailto:support@streamvik.com">support@streamvik.com</a></p>
-        <p>We aim to respond to all inquiries within 48 hours.</p>
-    </div>
+      <div class="tabs-card">
+        <div class="tabs">
+          <button class="tab-button active" onclick="showTab('games')">Games</button>
+          <button class="tab-button" onclick="showTab('tools')">Tools</button>
+        </div>
 
-    <div class="privacy-policy">
-        <h2>Privacy Policy</h2>
-        <p class="date">Last Updated: April 2026</p>
+        <div id="games" class="tab-content active">
+          <div class="app-holder">
+            <img src="dot.png" alt="Dot Doge app icon">
+          </div>
+          <div class="app-name">Dot Dodge!</div>
+        </div>
 
-        <p>Streamvik Entertainment Limited ("we", "us", or "our") built the HCMAI (Hindustani Classical Music AI) app as a Commercial app. This SERVICE is provided by Streamvik Entertainment Limited and is intended for use as is.</p>
+        <div id="tools" class="tab-content tools-empty">
+          <h3>Nothing here yet...</h3>
+          <p>
+            Our tools will appear here soon. We are working on useful apps that help with everyday life and productivity.
+          </p>
+        </div>
+      </div>
 
-        <h3>1. Information Collection and Use</h3>
-        <p>For a better experience while using our Service, we may require you to provide us with certain personally identifiable information. The information that we request will be retained by us and used as described in this privacy policy.</p>
-        <p>The app does use third-party services that may collect information used to identify you. We use <strong>Google Firebase / Cloud Firestore</strong> to securely store user-generated data (such as musical notations, saved raags, and app preferences) to sync your experience across devices.</p>
+      <div class="info-grid">
+        <div class="info-box">
+          <h3>Modern Design</h3>
+          <p>We focus on clean layouts, smooth experiences, and easy-to-use interfaces.</p>
+        </div>
 
-        <h3>2. Log Data</h3>
-        <p>We want to inform you that whenever you use our Service, in a case of an error in the app we collect data and information (through third-party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol ("IP") address, device name, operating system version, the configuration of the app when utilizing our Service, the time and date of your use of the Service, and other statistics.</p>
+        <div class="info-box">
+          <h3>Creative Ideas</h3>
+          <p>We build apps with a mix of entertainment, productivity, and imagination.</p>
+        </div>
 
-        <h3>3. Data Security</h3>
-        <p>We value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it. Your data stored in Firestore is secured using industry-standard encryption both in transit and at rest. However, remember that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and we cannot guarantee its absolute security.</p>
+        <div class="info-box">
+          <h3>Simple Support</h3>
+          <p>Need help with one of our apps? Contact us and we will do our best to respond quickly.</p>
+        </div>
+      </div>
+    </section>
 
-        <h3>4. Data Deletion and User Rights</h3>
-        <p>In compliance with Apple App Store guidelines, you have the right to request the complete deletion of your account and all associated data. You can initiate this process directly within the App's settings menu, or by emailing us at support@streamvik.com. Upon request, all user-generated content and identifying information will be permanently purged from our active Firestore databases.</p>
+    <section id="support" class="support">
+      <h2>App Support</h2>
+      <p>
+        If you need help, want to report a bug, or have questions about one of our apps,
+        contact us directly.
+      </p>
+      <p>We aim to respond to issues and inquiries within 1–3 days.</p>
 
-        <h3>5. Changes to This Privacy Policy</h3>
-        <p>We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+      <a
+        class="email-link"
+        href="https://mail.google.com/mail/?view=cm&fs=1&to=support@streamvik.com"
+        target="_blank"
+      >
+        support@streamvik.com
+      </a>
+    </section>
 
-        <h3>6. Contact Us</h3>
-        <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at support@streamvik.com.</p>
-    </div>
+    <section id="privacy" class="privacy">
+      <h2>Privacy Policy</h2>
+      <p class="date">Last Updated: April 2026</p>
 
+      <p>
+        Streamvik Entertainment Limited ("we", "us", or "our") creates mobile apps, games,
+        tools, and digital services. This Privacy Policy explains how information may be
+        collected, used, and protected when you use our apps or services.
+      </p>
+
+      <h3>1. Information Collection and Use</h3>
+      <p>
+        Some of our apps may collect information needed to provide app features, improve user
+        experience, save preferences, or support account-related functionality. The type of
+        information collected depends on the specific app or service being used.
+      </p>
+
+      <h3>2. Third-Party Services</h3>
+      <p>
+        Some apps may use third-party services such as analytics, cloud storage, crash reporting,
+        or authentication services. These services may collect information used to identify,
+        improve, or secure app functionality.
+      </p>
+
+      <h3>3. Log Data</h3>
+      <p>
+        When an error occurs, we or third-party services may collect log data such as device type,
+        operating system version, app configuration, time and date of use, and other diagnostic
+        information to help improve reliability.
+      </p>
+
+      <h3>4. Data Security</h3>
+      <p>
+        We value your trust and aim to use commercially acceptable methods to protect your
+        information. However, no method of transmission over the internet or electronic storage
+        is 100% secure, so we cannot guarantee absolute security.
+      </p>
+
+      <h3>5. Data Deletion and User Rights</h3>
+      <p>
+        If an app provides account features or stores user-generated data, users may request data
+        deletion by contacting us at
+        <a
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=support@streamvik.com"
+          target="_blank"
+        >
+          support@streamvik.com
+        </a>.
+        When applicable, we will delete associated user data from active systems according to the app's data practices.
+      </p>
+
+      <h3>6. Changes to This Privacy Policy</h3>
+      <p>
+        We may update this Privacy Policy from time to time. Any changes will be posted on this
+        page with an updated date.
+      </p>
+
+      <h3>7. Contact Us</h3>
+      <p>
+        For questions about support or privacy, contact us at
+        <a
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=support@streamvik.com"
+          target="_blank"
+        >
+          support@streamvik.com
+        </a>.
+      </p>
+    </section>
+
+    <footer>
+      © 2026 Streamvik Entertainment Limited. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    function showTab(tabName) {
+      const tabs = document.querySelectorAll(".tab-content");
+      const buttons = document.querySelectorAll(".tab-button");
+
+      tabs.forEach(tab => {
+        tab.classList.remove("active");
+      });
+
+      buttons.forEach(button => {
+        button.classList.remove("active");
+      });
+
+      document.getElementById(tabName).classList.add("active");
+
+      if (tabName === "games") {
+        buttons[0].classList.add("active");
+      } else {
+        buttons[1].classList.add("active");
+      }
+    }
+  </script>
 </body>
 </html>
